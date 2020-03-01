@@ -30,7 +30,7 @@
   }
 
   &:checked:backdrop, &:active:backdrop {
-    color: $inverse_disabled_fg_color;
+    color: $black;
     border-image: radial-gradient(circle closest-corner at center calc(100% - 1px),
                                   $inverse_disabled_fg_color 100%,
                                   transparent 0%)
@@ -41,7 +41,7 @@
     color: $inverse_disabled_secondary_fg_color;
 
     &:hover {
-      color: $inverse_secondary_fg_color;
+      color: $black;
     }
   }
 }
@@ -50,12 +50,12 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
 
 .nautilus-window {
   background-image: $theme_image;
-  background-size: 48px auto;
+  background-size: 55px auto;
   background-position: left bottom;
   background-repeat: no-repeat;
 
   &.csd.background {
-    background-color: if($solid == 'false', rgba($nautilus_bg_color, 0.97), $nautilus_bg_color);
+    background-color: $nautilus_bg_color;
     border-radius: 0 0 $windows_radius $windows_radius; // It also has an effect on nautilus notebook stacks background
 
     notebook {
@@ -81,7 +81,9 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
   &.maximized.csd.background,
   &.maximized placessidebar,
   &.maximized notebook,
-  &.maximized notebook > stack { border-radius: 0; }
+  &.maximized notebook > stack { 
+    border-radius: 0;
+  }
 
   placessidebar.sidebar {
     background-color: transparent;
@@ -94,26 +96,51 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
     }
 
     row.sidebar-row {
-      padding-left: 6px;
+      padding: 4px 0 4px 8px;
       border-radius: 0 $buttons_radius $buttons_radius 0;
 
       &:selected button.sidebar-button  { @extend %selected_sidebar_button; }
 
-      image.sidebar-icon { color: $inverse_secondary_fg_color; }
-      label.sidebar-label { padding-left: 18px; color: $secondary_fg_color; }
-
-      &:hover {
-        background-color: rgba($divider_color, 0.0);
+      image.sidebar-icon { 
+        color: $black; 
+        width: 30px;
+        height: 30px;
+        background-size: 30px 30px;
+      }
+      label.sidebar-label { 
+        letter-spacing: 1.1px;
+        //font-family: 'Roboto Condensed';
+        font-size: 19px;
+        font-variant: small-caps;
+        text-transform: uppercase;
+        padding-left: 22px;
+        font-weight: 500;
+        color: $purple_3;
+        transition: padding-left 200ms linear;
       }
 
-      &:backdrop { opacity: 0.85; }
+      &:hover {
+        label.sidebar-label {
+          padding-left: 27px;
+        }
+      }
+
+      // &:backdrop { 
+      //   opacity: 0.9; 
+      // }
 
       &:selected {
-        background-color: rgba($divider_color, 0.06);
-        // font-weight: bold;
+        background-color: $purple_3;
 
-        label.sidebar-label { color: if($variant == 'light', $primary_color, lighten($primary_color, 15%)); }
-        image.sidebar-icon { color: $inverse_fg_color; }
+        label.sidebar-label {
+          padding-left: 27px;
+          font-weight: 500;
+          color: if($variant == 'light', $primary_color, $black);
+        }
+        image.sidebar-icon { 
+          color: $black;
+          background-size: 200%;
+        }
 
         &:active { box-shadow: none; }
       }
@@ -123,13 +150,12 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
   }
 
   headerbar {
-    background-color: if($solid == 'false', rgba($titlebar_bg_color, 0.97), $titlebar_bg_color);
-    background-image: if($titlebar == 'dark' and $variant == 'light', url("assets/scalable/header-icon-alt.svg"), url("assets/scalable/header-icon.svg"));
-    background-size: 48px auto;
+    background-color: $titlebar_bg_color;
+    background-image: url("assets/scalable/header-icon.svg");
+    background-size: 55px auto;
     background-position: left bottom;
     background-repeat: no-repeat;
-    padding-left: 54px;
-    box-shadow: inset 0 1px $titlebar_highlight_color;
+    padding-left: 68px;
 
     > revealer > button { @extend %circular_button; } // Make operations button circular
 
@@ -185,12 +211,9 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
   }
 
   paned > separator { // Ensure paned separator rendering. See issue #84 for details.
-    min-width: 20px;
-    color: transparent;
+    max-width: 10px;
+    color: $white;
     background-image: url("assets/scalable/side-paned.svg");
-    background-size: 20px 750px;
-    background-position: left center;
-    background-repeat: no-repeat;
   }
 
   // Floating status bar
@@ -239,7 +262,8 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
   // always allocates at least 1 pixel
   searchbar {
     border-top: 1px solid $border_color;
-    background-color: rgba($bg_color, 0.65);
+    background-color: $purple_3;
+    color: $black;
   }
 
   .searchbar-container { margin-top: -1px; }
@@ -1501,6 +1525,7 @@ window.background { // gnome-terminal 3.32 setting
     }
 
     > scrolledwindow > viewport.frame {
+      padding: 10px;
       list {
         border-bottom-left-radius: $windows_radius;
       }
@@ -1509,7 +1534,7 @@ window.background { // gnome-terminal 3.32 setting
 
   > box.vertical > box.horizontal > stack {
     > widget > notebook.frame {
-      border-width: 0;
+      border-width: 10;
 
       > stack {
         border-bottom-right-radius: $windows_radius;
@@ -1517,6 +1542,13 @@ window.background { // gnome-terminal 3.32 setting
     }
   }
 }
+
+// VteTerminal,
+// TerminalScreen,
+// vte-terminal {
+//     padding: 10px 10px 10px 10px;
+//     -VteTerminal-inner-border: 10px 10px 10px 10px;
+// }
 
 /***********
  * Dialogs *

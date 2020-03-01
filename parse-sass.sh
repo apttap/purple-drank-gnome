@@ -6,7 +6,7 @@ if [ ! "$(which sassc 2> /dev/null)" ]; then
   exit 1
 fi
 
-_COLOR_VARIANTS=('' '-dark' '-light')
+_COLOR_VARIANTS=('' '-dark')
 if [ ! -z "${COLOR_VARIANTS:-}" ]; then
   IFS=', ' read -r -a _COLOR_VARIANTS <<< "${COLOR_VARIANTS:-}"
 fi
@@ -25,7 +25,11 @@ for color in "${_COLOR_VARIANTS[@]}"; do
   done
 done
 
-sassc $SASSC_OPT src/gnome-shell/gnome-shell.{scss,css}
-echo ">> generating gnome-shell.css."
+#sassc $SASSC_OPT src/gnome-shell/gnome-shell.{scss,css}
+#echo ">> generating gnome-shell.css."
 sassc $SASSC_OPT src/gnome-shell/gnome-shell-dark.{scss,css}
 echo ">> generating gnome-shell-dark.css."
+
+cp ~/code/Layan-gtk-theme/src/gtk/gtk-dark.css /usr/share/themes/Layan-dark-solid/gtk-3.0/gtk.css
+cp ~/code/Layan-gtk-theme/src/gnome-shell/gnome-shell-dark.css /usr/share/themes/Layan-dark-solid/gnome-shell/gnome-shell.css
+

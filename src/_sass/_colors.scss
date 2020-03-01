@@ -8,20 +8,20 @@
 }
 
 @function fade($c) {
-  @return mix($c, $blue_grey_900, 50%);
+  @return mix($c, $black, 50%);
 }
 
 // Foreground colors
-$dark_fg_color:   rgba($black, 0.87);
+$dark_fg_color:  $black;
 $light_fg_color:  $white;
 
 $fg_color:                    if($variant == 'light', rgba($black, 0.75), $white);
-$button_fg_color:             if($variant == 'light', rgba($black, 0.62), rgba($white, 0.8)); // extra fg color for raised buttons
+$button_fg_color:             if($variant == 'light', rgba($black, 0.62), $black); // extra fg color for raised buttons
 $secondary_fg_color:          if($variant == 'light', rgba($black, 0.54), rgba($white, 0.7));
 $hint_fg_color:               if($variant == 'light', rgba($black, 0.38), rgba($white, 0.5));
 $disabled_fg_color:           if($variant == 'light', rgba($black, 0.38), rgba($white, 0.5));
 $disabled_secondary_fg_color: if($variant == 'light', rgba($black, 0.26), rgba($white, 0.3));
-$track_color:                 if($variant == 'light', rgba($black, 0.26), rgba($white, 0.3));
+$track_color:                 if($variant == 'light', rgba($black, 0.26), rgba($white, 1));
 $divider_color:               if($variant == 'light', rgba($black, 0.12), rgba($white, 0.12));
 
 $titlebar_fg_color:                    if($titlebar == 'light', rgba($black, 0.75), $white);
@@ -37,7 +37,7 @@ $inverse_secondary_fg_color:          rgba($white, 0.7);
 $inverse_hint_fg_color:               rgba($white, 0.5);
 $inverse_disabled_fg_color:           rgba($white, 0.5);
 $inverse_disabled_secondary_fg_color: rgba($white, 0.3);
-$inverse_track_color:                 rgba($white, 0.3);
+$inverse_track_color:                 $purple_3;
 $inverse_divider_color:               rgba($white, 0.12);
 
 $panel_fg_color:                      if($titlebar == 'light', rgba($white, 0.8), rgba($white, 0.8));
@@ -49,53 +49,53 @@ $panel_track_color:                   if($titlebar == 'light', rgba($white, 0.3)
 $panel_divider_color:                 if($titlebar == 'light', rgba($white, 0.12), rgba($white, 0.12));
 
 // Background colors
-$bg_color:         if($variant == 'light', $blue_grey_50, fade($blue_grey_800));
-$base_color:       if($variant == 'light', $white, fade($blue_grey_850));
+$bg_color:         if($variant == 'light', $blue_grey_50, $black);
+$base_color:       if($variant == 'light', $white, $black);
 $alt_base_color:   if($variant == 'light', darken($bg_color, 3%), lighten($bg_color, 3%));
-$lighter_bg_color: if($variant == 'light', $blue_grey_50, $blue_grey_750);
-$alt_lighter_bg_color: if($variant == 'light', $blue_grey_100, fade($blue_grey_800)); // for gnome-shell sub menu
-$darker_bg_color:  if($variant == 'light', $blue_grey_200, fade($blue_grey_900));
-$keyboard_bg_color:  if($variant == 'light', $blue_grey_50, fade($blue_grey_800)); // for gnome-shell keyboard
-$alt_keyboard_bg_color:  if($variant == 'light', $blue_grey_300, fade($blue_grey_900)); // for gnome-shell keyboard
+$lighter_bg_color: if($variant == 'light', $blue_grey_50, $black);
+$alt_lighter_bg_color: if($variant == 'light', $blue_grey_100, $black); // for gnome-shell sub menu
+$darker_bg_color:  if($variant == 'light', $blue_grey_200, $black);
+$keyboard_bg_color:  if($variant == 'light', $blue_grey_50, $black); // for gnome-shell keyboard
+$alt_keyboard_bg_color:  if($variant == 'light', $blue_grey_300, $black); // for gnome-shell keyboard
 
-$button_bg_color: if($variant == 'light', $base_color, $lighter_bg_color);
+$button_bg_color: if($variant == 'light', $base_color, lighten($purple_3, 3%));
 
-$titlebar_bg_color:     if($titlebar == 'light', $white, fade($blue_grey_850));
-$alt_titlebar_bg_color: if($titlebar == 'light', $blue_grey_50, $blue_grey_800);
+$titlebar_bg_color:     if($titlebar == 'light', $white, $black);
+$alt_titlebar_bg_color: if($titlebar == 'light', $white, $black);
 
-$sidebar_bg_color:      if($variant == 'light', $white, $blue_grey_850);
-$alt_sidebar_bg_color:  if($variant == 'light', $white, $blue_grey_850);
+$sidebar_bg_color:      if($variant == 'light', $white, $black);
+$alt_sidebar_bg_color:  if($variant == 'light', $white, $black);
 
-$panel_bg_color:         rgba($blue_grey_900, $secondary_opacity + 0.1);
-$alt_panel_bg_color:     rgba($blue_grey_800, $secondary_opacity + 0.1);
-$inverse_panel_bg_color: rgba($inverse_fg_color, 0.1);
-$solid_panel_bg_color:   if($titlebar == 'dark', $blue_grey_900, $blue_grey_900);
-$opaque_panel_bg_color:  if($titlebar == 'dark', $blue_grey_900, $blue_grey_900); // for Unity panel which cannot use translucent colors
+$panel_bg_color:         $black;
+$alt_panel_bg_color:     $black;
+$inverse_panel_bg_color: $black;
+$solid_panel_bg_color:   if($titlebar == 'dark', $black, $black);
+$opaque_panel_bg_color:  if($titlebar == 'dark', $black, $black); // for Unity panel which cannot use translucent colors
 
-$gdm_bg_color:  if($variant == 'light', $blue_grey_800, $blue_grey_900);
+$gdm_bg_color:  if($variant == 'light', $white, $black);
 
-$menu_bg_color:     if($titlebar == 'light' and $variant == 'light', $base_color, $blue_grey_850);
+$menu_bg_color:     if($titlebar == 'light' and $variant == 'light', $base_color, $black);
 $menu_fg_color:     if($titlebar == 'light' and $variant == 'light', rgba($black, 0.54), rgba($white, 0.7));
 $menu_disabled_fg:  if($titlebar == 'light' and $variant == 'light', rgba($black, 0.26), rgba($white, 0.3));
-$menu_border_color: if($titlebar == 'light' and $variant == 'light', rgba($black, 0.1), rgba($white, 0.1));
+$menu_border_color: if($titlebar == 'light' and $variant == 'light', rgba($black, 0.1), rgba($white, 0));
 
-$fill_color:      gtkalpha(currentColor, $lower_opacity);
-$semi_fill_color: gtkalpha(currentColor, $lower_opacity / 2);
-$row_fill_color:  gtkalpha(currentColor, 0.05);
+$fill_color:      gtkalpha(currentColor, 1);
+$semi_fill_color: $purple_3;
+$row_fill_color:  transparent;
 
 // Misc colors
-$primary_color:         #5657f5;
-$alt_primary_color:     #5C6BC0;
-$progress_color:        #5D7DFB;
-$sidebar_color:         #F5F6FA;
-$accent_color:          $deep_purple_A200;
+$primary_color:         $purple_3;
+$alt_primary_color:     $purple_2;
+$progress_color:        $purple_3;
+$sidebar_color:         $black;
+$accent_color:          $purple_3;
 $disabled_accent_color: rgba($accent_color, 0.5);
 
-$theme_color_top:    #716ffb;
-$theme_color_middle: #6C6AF2;
-$theme_color_bottom: #4648FB;
-$theme_image: linear-gradient(to bottom, $theme_color_middle, $theme_color_bottom);
-$header_theme_image: linear-gradient(to bottom, $theme_color_top, $theme_color_middle);
+$theme_color_top:    $purple_3;
+$theme_color_middle: $purple_3;
+$theme_color_bottom: $purple_3;
+$theme_image: linear-gradient(to bottom, $theme_color_top, $theme_color_top);
+$header_theme_image: linear-gradient(to bottom, $theme_color_top, $theme_color_top);
 
 $link_color:         $primary_color;
 $visited_link_color: $purple_A200;
@@ -116,8 +116,8 @@ $suggested_image: linear-gradient(to bottom, $light_blue_300, $blue_400);
 $destructive_image: linear-gradient(to bottom, $red_400, $red_A200);
 $progress_image: linear-gradient(to left, $purple_300, $deep_purple_400);
 
-$border_color:             if($variant == 'light', rgba($black, 0.08), rgba($white, 0.08));
-$solid_border_color:       if($variant =='light', darken($bg_color, 8%), lighten($bg_color, 8%));
+$border_color:             if($variant == 'light', rgba($black, 0.08), rgba(0,0,0, 0));
+$solid_border_color:       if($variant =='light', darken($bg_color, 8%), rgba(0,0,0, 0));
 $alt_border_color:         rgba($black, 0.2); // for non-native GTK+ apps (e.g. Firefox and Chrome)
 $highlight_color:          if($variant == 'light', rgba($white, 0.4),  rgba($white, 0.1));
 $titlebar_highlight_color: if($titlebar == 'dark', rgba($white, 0.1),  rgba($white, 0.0));

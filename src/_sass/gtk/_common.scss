@@ -1626,11 +1626,11 @@ menubar,
 menu,
 .menu,
 .context-menu {
-  margin: 4px 0; // See https://bugzilla.gnome.org/show_bug.cgi?id=591258
-  padding: 4px;
+  margin: 3px 0; // See https://bugzilla.gnome.org/show_bug.cgi?id=591258
+  padding: 3px;
   box-shadow: inset 0 1px rgba($menu_border_color, 0.06);
   background-color: $menu_bg_color;
-  border: 1px solid $menu_border_color; // adds borders in a non composited env
+  border: 0; // adds borders in a non composited env
   border-radius: $menu_radius;
   color: $menu_fg_color;
 
@@ -1643,7 +1643,7 @@ menu,
     transition: background-color $shorter_duration $deceleration_curve;
     min-height: 20px;
     min-width: 40px;
-    padding: 4px 8px;
+    padding: 3px 6px;
     font: initial;
     text-shadow: none;
     color: $menu_fg_color;
