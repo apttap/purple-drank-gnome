@@ -102,20 +102,17 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
       &:selected button.sidebar-button  { @extend %selected_sidebar_button; }
 
       image.sidebar-icon { 
-        color: $black; 
+        color: $text_dim; 
         width: 30px;
         height: 30px;
-        background-size: 30px 30px;
       }
       label.sidebar-label { 
-        letter-spacing: 1.1px;
+        letter-spacing: 1px;
         //font-family: 'Roboto Condensed';
         font-size: 19px;
-        font-variant: small-caps;
-        text-transform: uppercase;
         padding-left: 22px;
-        font-weight: 500;
-        color: $purple_3;
+        font-weight: 400;
+        color: $text_dim;
         transition: padding-left 200ms linear;
       }
 
@@ -134,12 +131,15 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
 
         label.sidebar-label {
           padding-left: 27px;
-          font-weight: 500;
-          color: if($variant == 'light', $primary_color, $black);
+          color: if($variant == 'light', $primary_color, $text);
+          padding-left: 22px;
         }
         image.sidebar-icon { 
-          color: $black;
+          color: $text;
           background-size: 200%;
+          &:first-child {
+            //image icon
+          }
         }
 
         &:active { box-shadow: none; }
@@ -168,7 +168,6 @@ $nautilus_bg_color: if($titlebar == 'dark' and $variant == 'light', $base_color,
       padding-left: 22px;
       margin-left: 6px;
       margin-right: 6px;
-      box-shadow: if($variant == 'light', $header_shadow_light, $header_shadow_dark);
 
       button { @extend %pathbar_box_button; }
 
